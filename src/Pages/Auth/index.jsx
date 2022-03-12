@@ -6,7 +6,7 @@ import './auth.css'
 const Auth = () => {
     return (
         <Fragment>
-            <div className="d-flex container">
+            <div className="container d-flex">
                 <div className="auth-left">
                     <h2 className="auth-logo-title mb-2">
                         Zwallet
@@ -22,7 +22,7 @@ const Auth = () => {
                         users coverage.
                     </p>
                 </div>
-                <div className="auth-right">
+                <div className="auth-right d-flex flex-fill">
                     <Outlet />
                 </div>
             </div>

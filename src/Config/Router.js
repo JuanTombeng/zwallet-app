@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 //import Auth
 import Auth from '../Pages/Auth'
+import Login from "../Pages/Auth/Login";
 
 import Main from '../Pages/Main'
 
@@ -11,7 +12,7 @@ const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/auth" element={<Auth />}>
-
+                    <Route path="login" element={<Login />} />
                 </Route>
                 <Route path="/main" element={<Main />}>
                     
