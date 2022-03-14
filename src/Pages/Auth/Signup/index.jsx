@@ -1,21 +1,17 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //components
 import Input from '../../../Components/Base/Input';
 import Button from '../../../Components/Base/Button'
 
-//redux
-import { PostLogin } from '../../../Redux/actions/auth/login';
-
-const Login = () => {
+const Signup = () => {
     const [form, setForm] = useState({
         email : '',
+        username : '',
         password : ''
     })
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
     const [hiddenPass, setHiddenPass] = useState(true)
     const [defaultHiddenPassIcon, setDefaultHiddenPassIcon] = useState('icon-eye fa-solid fa-eye-slash')
     const handleChangeForm = (e) => {
@@ -33,11 +29,11 @@ const Login = () => {
         }
     }
     const handleSubmit = () => {
-        dispatch(PostLogin(form, navigate))
+        console.log(form)
     }
     return (
         <Fragment>
-            <div className="login d-flex flex-column flex-fill my-auto px-5">
+            <div className="signup d-flex flex-column flex-fill my-auto px-5">
                 <h1 className="auth-right-title mb-3">
                     Start Accessing Banking Needs<br />
                     With All Devices and All Platforms<br /> With 30.000+ Users
@@ -51,8 +47,16 @@ const Login = () => {
                     onChange={handleChangeForm}
                     name="email"
                     value={form.email}
-                    type="email"
-                    placeholder="Enter Your e-mail"
+                    type="text"
+                    placeholder="Enter Your Email"
+                    />
+                    <Input className='form-search' 
+                    icon='icon-user fa-solid fa-user'
+                    onChange={handleChangeForm}
+                    name="username"
+                    value={form.username}
+                    type="text"
+                    placeholder="Enter Your username"
                     />
                     {
                         hiddenPass === true ? (
@@ -83,20 +87,13 @@ const Login = () => {
                         )
                     }
                 </div>
-                <div className="auth-forget-password d-flex justify-content-end py-4">
-                    <Link className='link-decoration' to='/auth/forget-password'>
-                        <p className="auth-forget-parag">
-                            Forgot Password?
-                        </p>
-                    </Link>
-                </div>
-                <div className="auth-submision-area d-flex flex-column justify-content-center">
-                    <Button className='auth-button-ready' value='Login' onClick={handleSubmit}></Button>
-                    <p className="auth-label py-4">Don’t have an account? <Link className='link-decoration primary' to="/auth/signup" replace > Sign Up </Link></p>
+                <div className="auth-submision-area d-flex flex-column justify-content-center my-5">
+                    <Button className='auth-button-ready' value='Sign Up' onClick={handleSubmit}></Button>
+                    <p className="auth-label py-4">Already have an account? Let's <Link className='link-decoration primary' to="/auth/login" replace> Login </Link></p>
                 </div>
             </div>
         </Fragment>
     )
 }
 
-export default Login
+export default Signup

@@ -7,7 +7,7 @@ const Auth = () => {
     return (
         <Fragment>
             <div className="container d-flex">
-                <div className="auth-left">
+                <div className="auth-left d-flex flex-column justify-content-center">
                     <h2 className="auth-logo-title mb-2">
                         Zwallet
                     </h2>

@@ -31,12 +31,18 @@
     cursor: pointer;
 }
 
-.icon-lock {
+.icon-auth-secondary {
     padding: 1rem;
     font-size: 20px;
     color: #DADADA;
     transform: translate(0px, 50px);
     cursor: pointer;
+}
+
+.icon-user {
+    transform: translate(17px, 40px);
+    font-size: 20px;
+    color: #DADADA;
 }
 
 .icon-eye {

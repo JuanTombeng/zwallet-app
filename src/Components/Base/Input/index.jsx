@@ -6,7 +6,7 @@ const Input = (props) => {
        <Fragment>
             <i className={props.icon ? props.icon : null}></i>
             <input className={props.className ? props.className : `input`} {...props}  placeholder={props.placeholder}/>
-            <i className={props.secondIcon ? props.secondIcon : null} onClick={props.secondIconOnClick}></i>
+            {/* <i className={props.seconicon ? props.seconicon : null} onClick={props.changeicon} ></i> */}
             {/* <i className={props.close} onClick={props.onClick} onChange={props.onChange}></i> */}
        </Fragment>
     )
