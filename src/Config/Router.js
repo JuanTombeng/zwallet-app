@@ -8,6 +8,7 @@ import Signup from "../Pages/Auth/Signup";
 import ResetPassword from "../Pages/Auth/ResetPassword";
 
 import Main from '../Pages/Main'
+import Home from "../Pages/Main/Home";
 
 const Router = () => {
     return (
@@ -19,6 +20,7 @@ const Router = () => {
                     <Route path="reset-password" element={<ResetPassword />} />
                 </Route>
                 <Route path="/main" element={<Main />}>
+                    <Route path="home" element={<Home />} />
                     
                 </Route>
             </Routes>

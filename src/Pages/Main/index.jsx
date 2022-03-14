@@ -11,9 +11,9 @@ const Main = () => {
     return (
         <Fragment>
             <Header />
-                <main className='d-flex'>
+                <main className='d-flex' style={{backgroundColor : '#FAFCFF'}}>
                     <Sidebar />
-                    <div className="container-fluid d-flex h-auto">
+                    <div className="container-fluid d-flex h-auto p-0 ms-3">
                         <Outlet />
                     </div>
                 </main>
