@@ -6,6 +6,8 @@ import Auth from '../Pages/Auth'
 import Login from "../Pages/Auth/Login";
 import Signup from "../Pages/Auth/Signup";
 import ResetPassword from "../Pages/Auth/ResetPassword";
+import TransactionHistory from "../Pages/Main/Transaction/TransactionHistory";
+import Transfer from "../Pages/Main/Transaction/Transfer";
 
 import Main from '../Pages/Main'
 import Home from "../Pages/Main/Home";
@@ -21,6 +23,8 @@ const Router = () => {
                 </Route>
                 <Route path="/main" element={<Main />}>
                     <Route path="home" element={<Home />} />
+                    <Route path="history" element={<TransactionHistory />} />
+                    <Route path="transfer" element={<Transfer />} />
                     
                 </Route>
             </Routes>

@@ -31,7 +31,7 @@ export const PostLogin = ({email, password}, navigate) => {
                 localStorage.setItem('auth', '0')
                 localStorage.setItem('token', JSON.stringify(token))
                 dispatch(PostLoginSuccess(data))
-                navigate("/main");
+                navigate("/main/home");
 
             })
             .catch((err) => {

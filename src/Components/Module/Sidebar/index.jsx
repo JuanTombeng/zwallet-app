@@ -6,13 +6,13 @@ function Sidebar(props) {
     return (
         <div className='Sidebar d-flex flex-column flex-fill'>
             <div className="row d-flex">
-                <Link to='/' style={{textDecoration : 'none'}} >
+                <Link to='/main/home' style={{textDecoration : 'none'}} >
                     <div className="col mt-4 mb-4 d-flex">
                         <i className="icon-list fas fa-th-large"></i>
                         <li className="menu-list d-none d-lg-block">Dashboard</li>
                     </div>
                 </Link>
-                <Link to='/transfer' style={{textDecoration : 'none'}}>
+                <Link to='/main/transfer' style={{textDecoration : 'none'}}>
                     <div className="col mt-4 mb-4 d-flex">
                         <i className="icon-list fas fa-arrow-up"></i>
                         <li className="menu-list d-none d-lg-block">Transfer</li>
@@ -32,7 +32,7 @@ function Sidebar(props) {
                 </Link>
             </div>
             <div className="row d-flex">
-                <Link to='/login' onClick={props.onClick} style={{textDecoration : 'none'}} >
+                <Link to='/auth/login' onClick={props.onClick} style={{textDecoration : 'none'}} >
                     <div className="col mt-4 mb-4 d-flex">
                         <i className="icon-list fas fa-sign-out-alt"></i>
                         <li className="menu-list d-none d-lg-block">Log Out</li>

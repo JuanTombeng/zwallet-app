@@ -4,7 +4,7 @@ import Button from '../../Base/Button';
 const Bluebar = (props) => {
     return (
         <Fragment>
-            <div className="bluebar wrapper d-flex w-100 h-25">
+            <div className="bluebar wrapper d-flex w-100">
                 <div className="left-wrapper d-flex flex-column justify-content-between w-50">
                     <p className="bluebar-title">
                         Balance
