@@ -45,7 +45,7 @@ const Home = () => {
                     <SummaryHistory>
                         {   transactionHistory.data && 
                             transactionHistory.data?.map((item) => {
-                            return (item.from_user_id === userProfile.id ? 
+                            return (item.from_user_id === userProfile && userProfile.id ? 
                             <Card key={item.id}
                                 profile_picture={item.profile_picture}
                                 transaction_name={item.first_name}
