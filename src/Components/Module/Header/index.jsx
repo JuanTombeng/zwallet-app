@@ -1,9 +1,20 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext, useEffect } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {GetUserDetails} from '../../../Redux/actions/main/userDetails'
+
 import './header.css'
 import defaultPict from '../../../Assets/Images/default.jpg'
 import bell from '../../../Assets/Images/bell.png'
 
-const Header = (props) => {
+const Header = () => {
+    const dispatch = useDispatch()
+    const {data} = useSelector((state) => state.UserDetails)
+    const userProfile = data[0]
+    useEffect(() => {
+        dispatch(GetUserDetails())
+    }, [])
+    console.log(userProfile + 'dari header')
     return (
         <Fragment>
             <header className="header d-flex">
@@ -14,13 +25,13 @@ const Header = (props) => {
                 </div>
                 <div className="header-right w-50 d-flex">
                     <div className="header-user-profile d-flex flex-fill justify-content-end align-items-center text-center">
-                        <img className="img-fluid" src={props.profile_picture ? props.profile_picture : defaultPict} width={50}  alt="" />
+                        <img className="img-fluid" src={userProfile ? userProfile.profile_picture : defaultPict} width={50}  alt="" />
                         <div className="user-profile-middle mx-3">
                             <p className="header-profile-name">
-                                {props.display_name ? props.display_name : `Profile Name`}
+                                {`${userProfile ? userProfile.first_name : 'First'} ${userProfile? userProfile.last_name : 'Last Name'}`}
                             </p>
                             <p className="header-phone-number">
-                                {props.phone_number ? props.phone_number : `Phone Number`}
+                                {userProfile ? userProfile.phone_number : `Phone Number`}
                             </p>
                         </div>
                             <img src={bell} width={25} alt="" />

@@ -1,11 +1,14 @@
 import React, { Fragment } from "react"
 import Router from "./Config/Router"
+import ContextWrapper from "./Context/userContext"
 
 const App = () => {
     return (
-        <Fragment>
-            <Router />
-        </Fragment>
+        <ContextWrapper>
+            <Fragment>
+                <Router />
+            </Fragment>
+        </ContextWrapper>
     )
 }
 
