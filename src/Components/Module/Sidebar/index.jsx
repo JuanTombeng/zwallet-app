@@ -24,7 +24,7 @@ function Sidebar(props) {
                         <li className="menu-list d-none d-lg-block">Top Up</li>
                     </div>
                 </Link>
-                <Link to='/profile' style={{textDecoration : 'none'}} >
+                <Link to='/main/profile' style={{textDecoration : 'none'}} >
                 <div className="col mt-4 mb-4 d-flex">
                     <i className="icon-list far fa-user"></i>
                     <li className="menu-list d-none d-lg-block">Profile</li>

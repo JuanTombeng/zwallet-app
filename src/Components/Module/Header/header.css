@@ -18,6 +18,10 @@
     width: 100%;
 }
 
+.header-user-profile img {
+    border-radius: 20px;
+}
+
 .header-title {
     font-style: normal;
     font-weight: 700;

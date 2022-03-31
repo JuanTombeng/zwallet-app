@@ -10,13 +10,13 @@ const Bluebar = (props) => {
                         Balance
                     </p>
                     <h2 className="bluebar-balance">
-                        Rp 120.000
+                        Rp {props.balance}
                     </h2>
                     <p className="bluebar-phone-number">
-                        +62811111111
+                        {props.phone_number}
                     </p>
                 </div>
-                <div className="right-wrapper d-flex flex-column w-50 justify-content-between align-items-end">
+                <div className="right-wrapper d-flex flex-column w-50 justify-content-evenly align-items-end">
                     {/* <i className="dashboard-icon fa-solid fa-arrow-up" ></i> */}
                     <Button className="dashboard-button"  value="Transfer" />
                     {/* <i className="dashboard-icon-secondary fa-solid fa-arrow-down" ></i> */}

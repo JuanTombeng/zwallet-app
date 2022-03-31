@@ -31,8 +31,11 @@ export const PostLogin = ({email, password}, navigate) => {
                 localStorage.setItem('auth', '0')
                 localStorage.setItem('token', JSON.stringify(token))
                 dispatch(PostLoginSuccess(data))
-                navigate("/main/home");
-
+                dispatch(PostLoginSuccess(data))
+                const retrievedToken = JSON.parse(localStorage.getItem('token'))
+                if (retrievedToken) {
+                    navigate("/welcome");
+                }
             })
             .catch((err) => {
                 const message = err.message

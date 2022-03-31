@@ -59,7 +59,7 @@ const Signup = () => {
                     placeholder="Enter Your username"
                     />
                     {
-                        hiddenPass === true ? (
+                        hiddenPass ? (
                             <>
                                 <Input className='form-search' 
                                 icon='icon-auth-secondary fas fa-lock'

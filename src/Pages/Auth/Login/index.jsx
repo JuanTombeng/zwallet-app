@@ -55,7 +55,7 @@ const Login = () => {
                     placeholder="Enter Your e-mail"
                     />
                     {
-                        hiddenPass === true ? (
+                        hiddenPass ? (
                             <>
                                 <Input className='form-search' 
                                 icon='icon-auth-secondary fas fa-lock'
@@ -84,7 +84,7 @@ const Login = () => {
                     }
                 </div>
                 <div className="auth-forget-password d-flex justify-content-end py-4">
-                    <Link className='link-decoration' to='/auth/forget-password'>
+                    <Link className='link-decoration' to='/auth/reset-password'>
                         <p className="auth-forget-parag">
                             Forgot Password?
                         </p>

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Chart = () => {
+const Chart = (props) => {
     return (
         <Fragment>
             <div className="chart wrapper d-flex flex-column w-50 h-100">
@@ -11,7 +11,7 @@ const Chart = () => {
                             Income
                         </p>
                         <h4 className="chart-income-balance">
-                            Rp 2.100.200
+                            Rp {props.income}
                         </h4>
                     </div>
                     <div className="chart-upper-right w-50">
@@ -20,7 +20,7 @@ const Chart = () => {
                             Outcome
                         </p>
                         <h4 className="chart-outcome-balance">
-                            Rp 2.100.200   
+                            Rp {props.outcome} 
                         </h4>
                     </div>
                 </div>
