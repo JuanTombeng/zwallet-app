@@ -16,11 +16,13 @@ const TransferConfirmation = () => {
     const {id} = useParams()
     const {data} = useSelector((state) => state.UserDetails)
     const userProfile = data[0]
+    const [errorMessage, setErrorMessage] = useState('')
     const [transferDetail, setTransferDetail] = useState(null)
     const [balanceLeft, setBalanceLeft] = useState(0)
     const [transferDate, setTransferDate] = useState(new Date())
     const [pinModal, setPinModal] = useState(false)
     const [pin, setPin] = useState(new Array(6).fill(''))
+    
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('token')) 
         axios({
@@ -74,8 +76,11 @@ const TransferConfirmation = () => {
     }
     
     const handleSubmit = () => {
-        // console.log({...transferDetail, pin : parseInt(pin.join(''))})
-        dispatch(PostTransaction(id, {...transferDetail, pin : parseInt(pin.join(''))}, navigate))
+        if (parseInt(pin.join('')) === userProfile.pin) {
+            dispatch(PostTransaction(id, {...transferDetail, pin : parseInt(pin.join(''))}, navigate))
+        } else {
+            setErrorMessage('Your PIN is incorrect')
+        }
     }
     return (
         <Fragment>
@@ -127,7 +132,7 @@ const TransferConfirmation = () => {
                         pinModal ? (
                             <PinModal show={pinModal} closeModal={handleModal} modalTitle={'Enter PIN to Transfer'}
                             modalSubtitle={'Enter your 6 digits PIN for confirmation to continue transferring money.'}
-                            resetPin={handleResetPin} handleSubmit={handleSubmit} >
+                            resetPin={handleResetPin} handleSubmit={handleSubmit} errorMessage={errorMessage} >
                                 {
                                     pin.map((data, index) => {
                                         return (

@@ -2,9 +2,13 @@ import React, { useState, useEffect, Fragment } from 'react'
 import Button from '../../Base/Button'
 import closeIcon from '../../../Assets/Images/close-modal.svg'
 import resetIcon from '../../../Assets/Images/reset-pin.svg'
-import './Modal.css'
 
-const PinModal = ({show, closeModal, modalTitle, modalSubtitle, children, resetPin, handleSubmit, errorMessage}) => {
+
+const ProfileModal = ({closeModal, modalTitle, modalSubtitle, children, parentCallback, handleSubmit, resetImage, uploadErrorMessage, errorMessage}) => {
+    const onTrigger = (e) => {
+        e.preventDefault()
+        parentCallback(e.target.files[0])
+    }
     return (
         <Fragment>
             <div className='modal display-block'>
@@ -22,7 +26,13 @@ const PinModal = ({show, closeModal, modalTitle, modalSubtitle, children, resetP
                         <div className="modal-pin-wrapper d-flex flex-column justify-content-center align-items-center">
                             <div className="d-flex">{children}</div>
                             <div className="modal-pin-reset mt-3">
-                                <p onClick={resetPin}>reset pin</p>
+                                <div className="upload d-flex flex-column">
+                                    <input className='profile-pict-input d-flex' type="file" onChange={onTrigger} />
+                                    <div className="reset-profile d-flex flex-column align-items-center mt-2">
+                                        <p onClick={resetImage}>reset file</p>
+                                        <p className='profile-picture-error-message'>{uploadErrorMessage}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -36,4 +46,4 @@ const PinModal = ({show, closeModal, modalTitle, modalSubtitle, children, resetP
     )
 }
 
-export default PinModal
+export default ProfileModal

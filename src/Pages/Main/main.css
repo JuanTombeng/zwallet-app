@@ -372,3 +372,30 @@ h2.transfer-status-title {
     color: #4D4B57;
     margin: 0;
 }
+
+
+/* Top Up Page */
+
+.topup-input {
+    background-color: #FFF;
+    border: none;
+    border-bottom: 1px solid #6379f4;
+    height: 80px;
+    color: #000;
+    padding-left: 30px;
+    font-size: 40px;
+}
+
+.topup-input:focus {
+    color: #6379F4;
+    outline : none;
+}
+
+p.topup-subtitle {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #7A7886;
+    margin: 0;
+}

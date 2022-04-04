@@ -14,7 +14,11 @@ import Welcome from "../Pages/Main/Welcome";
 import Home from "../Pages/Main/Home";
 import Profile from "../Pages/Main/Profile";
 import Personal from "../Pages/Main/Profile/Personal";
+import ManagePhone from "../Pages/Main/Profile/ManagePhone";
+import NewPhone from "../Pages/Main/Profile/NewPhone";
 import ChangePassword from "../Pages/Main/Profile/ChangePassword";
+import ChangePin from "../Pages/Main/Profile/ChangePin";
+import TopUp from "../Pages/Main/Transaction/TopUp";
 import TransferInput from "../Pages/Main/Transaction/TransferInput";
 import TransferConfirmation from "../Pages/Main/Transaction/TransferConfirmation";
 import TransactionStatus from "../Pages/Main/Transaction/TransactionStatus";
@@ -32,6 +36,7 @@ const Router = () => {
                 <Route path="/main" element={<Main />}>
                     <Route path="home" element={<Home />} />
                     <Route path="history" element={<TransactionHistory />} />
+                    <Route path="topup" element={<TopUp />} />
                     <Route path="transfer" element={<Transfer />} />
                     <Route path="transfer-input/:id" element={<TransferInput />} />
                     <Route path="transfer-confirmation/:id" element={<TransferConfirmation />} />
@@ -39,6 +44,9 @@ const Router = () => {
                     <Route path="profile" element={<Profile />} />
                     <Route path="personal-information" element={<Personal />} />
                     <Route path="change-password" element={<ChangePassword />} />
+                    <Route path="change-pin" element={<ChangePin />} />
+                    <Route path="manage-phone" element={<ManagePhone />} />
+                    <Route path="new-phone" element={<NewPhone />} />
                 </Route>
             </Routes>
         </BrowserRouter>

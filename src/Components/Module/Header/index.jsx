@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
                 <div className="header-right w-50 d-flex">
                     <div className="header-user-profile d-flex flex-fill justify-content-end align-items-center text-center">
-                        <img className="img-fluid" src={userProfile ? userProfile.profile_picture : defaultPict} width={50}  alt="" />
+                        <img className="img-fluid" src={userProfile ? userProfile.profile_picture === null ? defaultPict : userProfile.profile_picture : defaultPict} width={50}  alt="" />
                         <div className="user-profile-middle mx-3">
                             <p className="header-profile-name">
                                 {`${userProfile ? userProfile.first_name : 'First'} ${userProfile? userProfile.last_name : 'Last Name'}`}

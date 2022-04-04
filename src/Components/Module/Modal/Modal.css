@@ -74,10 +74,60 @@
 
 .modal-pin-wrapper p {
     font-style: normal;
+    width: 100%;
     font-weight: 400;
     font-size: 16px;
     line-height: 30px;
     color: #FF5B37;
+    text-align: center;
+}
+
+
+/* Profile Upload Picture */
+.profile-edit, .reset-pin-icon {
+    cursor: pointer;
+}
+
+.profile-pict-preview {
+    width: 170px;
+    height: 170px;
+    border-radius: 20px;
+}
+
+.profile-pict-input {
+    z-index: 1;
+}
+
+.reset-profile {
+    cursor: pointer;
+}
+
+p.profile-picture-error-message {
+    background-color: #FF5B37;
+    color: #FFF;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.upload-button {
+    width: 100px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: #6379F4;
+    background-color: #FFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.upload input {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: #6379F4;
+    background-color: #FFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes fade-in {

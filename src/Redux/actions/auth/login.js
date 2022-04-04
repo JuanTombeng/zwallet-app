@@ -20,7 +20,7 @@ export const PostLoginFail = (error) => {
     }
 }
 
-export const PostLogin = ({email, password}, navigate) => {
+export const PostLogin = ({email, password}, navigate, setErrorMessage) => {
     return (dispatch) => {
         dispatch(PostLoginRequest())
         return postRequest({email : email, password : password}, `/v2/users/login`, 'POST', null)
@@ -38,9 +38,22 @@ export const PostLogin = ({email, password}, navigate) => {
                 }
             })
             .catch((err) => {
+                switch (err.response.data.code) {
+                    case 401 :
+                        setErrorMessage('Sorry, your password is wrong! Please try again.')
+                        break
+                    case 403 :
+                        setErrorMessage('Sorry, your account is not yet activated.')
+                        break
+                    case 404 :
+                        setErrorMessage('Sorry, We cannot find your email! Please try again.')
+                        break
+                    case 500 :
+                        setErrorMessage('Sorry, Our server is currently under maintenance. Please try again.')
+                        break
+                }
                 const message = err.message
                 dispatch(PostLoginFail(message))
-                console.log(err)
             })
     }
 }

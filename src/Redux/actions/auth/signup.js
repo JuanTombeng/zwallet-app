@@ -27,8 +27,7 @@ export const PostSignUp = ({email, username, password, pin}, navigate) => {
             .then((res) => {
                 const data = res.data?.data
                 dispatch(PostSignUpSuccess(data))
-                navigate("/main");
-
+                navigate("/welcome");
             })
             .catch((err) => {
                 const message = err.message

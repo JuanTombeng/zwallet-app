@@ -5,19 +5,22 @@ import { Link, useNavigate } from 'react-router-dom';
 //components
 import Input from '../../../Components/Base/Input';
 import Button from '../../../Components/Base/Button'
+import ErrorMessage from '../../../Components/Module/ErrorMessage/ErrorMessage';
 
 //redux
 import { PostLogin } from '../../../Redux/actions/auth/login';
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         email : '',
         password : ''
     })
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const [errorMessage, setErrorMessage] = useState('')
     const [hiddenPass, setHiddenPass] = useState(true)
     const [defaultHiddenPassIcon, setDefaultHiddenPassIcon] = useState('icon-eye fa-solid fa-eye-slash')
+
     const handleChangeForm = (e) => {
         setForm({
             ...form,
@@ -33,7 +36,7 @@ const Login = () => {
         }
     }
     const handleSubmit = () => {
-        dispatch(PostLogin(form, navigate))
+        dispatch(PostLogin(form, navigate, setErrorMessage))
     }
     return (
         <Fragment>
@@ -94,6 +97,9 @@ const Login = () => {
                     <Button className='auth-button-ready' value='Login' onClick={handleSubmit}></Button>
                     <p className="auth-label py-4">Don’t have an account? <Link className='link-decoration primary' to="/auth/signup" replace > Sign Up </Link></p>
                 </div>
+                {
+                    errorMessage ? <ErrorMessage content={errorMessage}></ErrorMessage> : null
+                }
             </div>
         </Fragment>
     )

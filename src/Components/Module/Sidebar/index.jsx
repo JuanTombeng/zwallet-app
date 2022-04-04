@@ -18,7 +18,7 @@ function Sidebar(props) {
                         <li className="menu-list d-none d-lg-block">Transfer</li>
                     </div>
                 </Link>
-                <Link to='/' style={{textDecoration : 'none'}}>
+                <Link to='/main/topup' style={{textDecoration : 'none'}}>
                     <div className="col mt-4 mb-4 d-flex">
                         <i className="icon-list fas fa-plus"></i>
                         <li className="menu-list d-none d-lg-block">Top Up</li>

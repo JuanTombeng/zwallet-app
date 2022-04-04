@@ -27,7 +27,6 @@ const Home = () => {
         dispatch((GetUserDetails()))
         dispatch(GetTransactionHistory())
     }, [])
-    console.log(data)
     return (
         <Fragment>
             <section className="dashboard home d-flex flex-column">
@@ -45,7 +44,7 @@ const Home = () => {
                     <SummaryHistory>
                         {   transactionHistory.data && 
                             transactionHistory.data?.map((item) => {
-                            return (item.from_user_id === userProfile && userProfile.id ? 
+                            return (item.from_user_id === userProfile.id ? 
                             <Card key={item.id}
                                 profile_picture={item.profile_picture}
                                 transaction_name={item.first_name}

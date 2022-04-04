@@ -29,3 +29,13 @@ export const postRequest = (data, url, headers) => {
         })
     }
 }
+
+export const putRequest = (data, url) => {
+    return axios({
+        baseURL : `${process.env.REACT_APP_URL_BACKEND}`,
+        data : data,
+        method : 'PUT',
+        url : url,
+        headers : {'Authorization': `Bearer ${token}`}
+    })
+}
