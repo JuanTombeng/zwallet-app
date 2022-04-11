@@ -22,11 +22,13 @@ import TopUp from "../Pages/Main/Transaction/TopUp";
 import TransferInput from "../Pages/Main/Transaction/TransferInput";
 import TransferConfirmation from "../Pages/Main/Transaction/TransferConfirmation";
 import TransactionStatus from "../Pages/Main/Transaction/TransactionStatus";
+import LandingPage from "../Pages";
 
 const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/auth" element={<Auth />}>
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Signup />} />

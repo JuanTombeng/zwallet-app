@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
+import graph from '../../../Assets/Images/graphic.svg'
 
 const Chart = (props) => {
     return (
         <Fragment>
             <div className="chart wrapper d-flex flex-column w-50 h-100">
-                <div className="chart-upper d-flex h-50 w-100">
+                <div className="chart-upper d-flex h-25 w-100">
                     <div className="chart-upper-left w-50 d-flex flex-column">
                         <i className="chart-icon fa-solid fa-arrow-down green mb-2" ></i>
                         <p className="chart-income-text mb-2">
@@ -24,8 +25,8 @@ const Chart = (props) => {
                         </h4>
                     </div>
                 </div>
-                <div className="chart-lower d-flex d-flex h-50 w-100">
-                    
+                <div className="chart-lower d-flex d-flex justify-content-center h-75 w-100 py-3">
+                    <img src={graph} alt="" />
                 </div>
             </div>
         </Fragment>
