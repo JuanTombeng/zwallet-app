@@ -8,9 +8,11 @@ const Auth = () => {
         <Fragment>
             <div className="container d-flex">
                 <div className="auth-left d-flex flex-column justify-content-center">
-                    <h2 className="auth-logo-title mb-2">
-                        Zwallet
-                    </h2>
+                    <Link to='/' style={{textDecoration : 'none'}}>
+                        <h2 className="auth-logo-title mb-2">
+                            Zwallet
+                        </h2>
+                    </Link>
                     <img className='img-fluid' src={authImg} width={450} alt="" />
                     <h2 className="auth-parag mb-3">
                         App that Covering Banking Needs.

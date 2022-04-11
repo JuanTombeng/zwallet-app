@@ -17,17 +17,25 @@ const LandingPage = () => {
             <div className="container-fluid landing p-0">
                 <section className="upper">
                     <div className="header-upper d-flex justify-content-between">
-                        <h1 className='landing-title'>Zwallet</h1>
+                        <Link to='/' style={{textDecoration : 'none'}}>
+                            <h1 className='landing-title'>Zwallet</h1>
+                        </Link>
                         <div className="d-flex justify-content-between">
-                            <Button className='landing-button' value='Login' />
-                            <Button className='landing-button-signup' value='Sign Up' />
+                            <Link to='/auth/login'>
+                                <Button className='landing-button' value='Login' />
+                            </Link>
+                            <Link to='/auth/signup'>
+                                <Button className='landing-button-signup' value='Sign Up' />
+                            </Link>
                         </div>
                     </div>
                     <div className="hero-upper d-flex">
                         <div className="left-hero d-flex flex-column w-50">
                             <h2>Awesome App For Saving Time.</h2>
                             <p>We bring you a mobile app for banking problems that oftenly wasting much of your times.</p>
-                            <Button className='landing-button' value='Try It Free' />
+                            <Link to='/auth/signup'>
+                                <Button className='landing-button' value='Try It Free' />
+                            </Link>
                         </div>
                         <div className="right-hero d-flex w-50 justify-content-center">
                             <img src={landingPhone} alt="" />
