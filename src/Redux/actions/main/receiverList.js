@@ -20,10 +20,11 @@ export const GetTransferReceiverFail = (error) => {
     }
 }
 
-export const GetTransferReceiver = () => {
+export const GetTransferReceiver = (querySearch) => {
     return (dispatch) => {
         dispatch(GetTransferReceiverRequest())
-        return getRequest(`/v2/contacts/contact-list`)
+        if (querySearch) {
+            return getRequest(`/v2/contacts/contact-list?name=${querySearch}`)
             .then((res) => {
                 const data = res.data?.data
                 dispatch(GetTransferReceiverSuccess(data))
@@ -32,5 +33,16 @@ export const GetTransferReceiver = () => {
                 const message = err.message
                 dispatch(GetTransferReceiverFail(message))
             })
+        } else {
+            return getRequest(`/v2/contacts/contact-list`)
+            .then((res) => {
+                const data = res.data?.data
+                dispatch(GetTransferReceiverSuccess(data))
+            })
+            .catch((err) => {
+                const message = err.message
+                dispatch(GetTransferReceiverFail(message))
+            })
+        }
     }
 }

@@ -20,7 +20,7 @@ export const PostTopUpFail = (error) => {
     }
 }
 
-export const PostTopUp = ({amount, pin}, setErrorMessage) => {
+export const PostTopUp = ({amount, pin}, setErrorMessage, setSuccessModal, setPinModal) => {
     return (dispatch) => {
         dispatch(PostTopUpRequest())
         return postRequest({
@@ -30,6 +30,8 @@ export const PostTopUp = ({amount, pin}, setErrorMessage) => {
         .then((res) => {
             const data = res.data?.data
             dispatch(PostTopUpSuccess(data))
+            setPinModal(false)
+            setSuccessModal(true)
         }).catch((err) => {
             switch (err.response.data.code) {
                 case 400 :

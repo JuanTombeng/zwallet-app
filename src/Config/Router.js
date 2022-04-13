@@ -20,6 +20,7 @@ import ChangePassword from "../Pages/Main/Profile/ChangePassword";
 import ChangePin from "../Pages/Main/Profile/ChangePin";
 import TopUp from "../Pages/Main/Transaction/TopUp";
 import TransferInput from "../Pages/Main/Transaction/TransferInput";
+import AddReceiver from "../Pages/Main/Transaction/AddReceiver";
 import TransferConfirmation from "../Pages/Main/Transaction/TransferConfirmation";
 import TransactionStatus from "../Pages/Main/Transaction/TransactionStatus";
 import LandingPage from "../Pages";
@@ -40,6 +41,7 @@ const Router = () => {
                     <Route path="history" element={<TransactionHistory />} />
                     <Route path="topup" element={<TopUp />} />
                     <Route path="transfer" element={<Transfer />} />
+                    <Route path="transfer-receiver" element={<AddReceiver />} />
                     <Route path="transfer-input/:id" element={<TransferInput />} />
                     <Route path="transfer-confirmation/:id" element={<TransferConfirmation />} />
                     <Route path="transfer-status/:id" element={<TransactionStatus />} />

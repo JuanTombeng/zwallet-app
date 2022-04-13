@@ -4,15 +4,18 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import {PostProfilePicture} from '../../../Redux/actions/main/uploadProfile'
 import ProfileModal from '../../../Components/Module/Modal/ProfileModal';
+import SuccessModal from '../../../Components/Module/Modal/SuccessModel';
 import defaultPicture from '../../../Assets/Images/default.jpg'
 import editPen from '../../../Assets/Images/vector.svg'
 import './Profile.css'
 
 const Profile = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {data} = useSelector((state) => state.UserDetails)
     const [errorMessage, setErrorMessage] = useState('')
     const [modal, setModal] = useState(false)
+    const [successModal, setSuccessModal] = useState(false)
     const [uploadErrorMessage, setUploadErrorMessage] = useState('')
     const [profilePicture, setProfilePicture] = useState(null)
     const userProfile = data[0]
@@ -33,9 +36,13 @@ const Profile = () => {
             if (pair[1] === 'undefined' || pair[1] === null) {
                 setUploadErrorMessage('Upload new profile picture, or please close the window')
             } else {
-                dispatch(PostProfilePicture(profilePictureData, setErrorMessage))
+                dispatch(PostProfilePicture(profilePictureData, setErrorMessage, setSuccessModal))
             }
         }
+    }
+
+    const handleSubmitSuccess = () => {
+        navigate('/main/home')
     }
     return (
         <Fragment>
@@ -84,6 +91,16 @@ const Profile = () => {
                         ) : (
                             null
                         )
+                    } 
+                    {
+                        successModal ? (
+                            <SuccessModal modalTitle={'Success!'} modalSubtitle='New Profile Change.'
+                            handleSubmit={handleSubmitSuccess} >
+                                <div className="d-flex">
+                                    
+                                </div>
+                            </SuccessModal>
+                        ) : null
                     }
                 </section>
             }

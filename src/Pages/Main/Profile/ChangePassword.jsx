@@ -6,15 +6,18 @@ import {PutUserPassword} from '../../../Redux/actions/main/changePassword'
 import Input from '../../../Components/Base/Input/'
 import Button from '../../../Components/Base/Button'
 import ErrorMessage from '../../../Components/Module/ErrorMessage/ErrorMessage';
+import SuccessModal from '../../../Components/Module/Modal/SuccessModel';
 
 import defaultPicture from '../../../Assets/Images/default.jpg'
 import editPen from '../../../Assets/Images/vector.svg'
 import './Profile.css'
 
 const ChangePassword = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState('')
     const userProfile = useSelector((state) => state.GetUserDetails)
+    const [successModal, setSuccessModal] = useState(false)
     const [hiddenCurrentPass, setHiddenCurrentPass] = useState(true)
     const [hiddenNewPass, setHiddenNewPass] = useState(true)
     const [hiddenRepeatPass, setHiddenRepeatPass] = useState(true)
@@ -66,10 +69,12 @@ const ChangePassword = () => {
             setErrorMessage('Confirmation password cannot be empty.')
         }
         if (form.new_password === form.confirm_password) {
-            console.log(form)
-            dispatch(PutUserPassword(form, setErrorMessage))
-            alert('Success change password.')
+            dispatch(PutUserPassword(form, setErrorMessage, setSuccessModal))
         }
+    }
+
+    const handleSubmitSuccess = () => {
+        navigate('/main/profile')
     }
     return (
         <Fragment>
@@ -174,6 +179,16 @@ const ChangePassword = () => {
                     <div className="d-flex flex-fill w-50 align-items-end">
                         <Button className='auth-button-ready' value='Change Password' onClick={handleSubmit}></Button>
                     </div>
+                    {
+                        successModal ? (
+                            <SuccessModal modalTitle={'Success!'} modalSubtitle='Your Password is Changed.'
+                            handleSubmit={handleSubmitSuccess} >
+                                <div className="d-flex">
+                                    
+                                </div>
+                            </SuccessModal>
+                        ) : null
+                    }
                 </div>
             </section>
         </Fragment>

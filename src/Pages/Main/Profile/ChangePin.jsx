@@ -7,15 +7,18 @@ import Button from '../../../Components/Base/Button'
 
 import ErrorMessage from '../../../Components/Module/ErrorMessage/ErrorMessage';
 import PinModal from '../../../Components/Module/Modal/PinModal';
+import SuccessModal from '../../../Components/Module/Modal/SuccessModel';
 import resetPin from '../../../Assets/Images/reset-pin.svg'
 import './Profile.css'
 
 const ChangePin = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {data} = useSelector((state) => state.UserDetails)
     const userProfile = data[0]
     const [errorMessage, setErrorMessage] = useState('')
     const [pinModal, setPinModal] = useState(true)
+    const [successModal, setSuccessModal] = useState(false)
     const [showNewPin, setShowNewPin] = useState(false)
     const [pin, setPin] = useState(new Array(6).fill(''))
     const [newPin, setNewPin] = useState(new Array(6).fill(''))
@@ -54,7 +57,7 @@ const ChangePin = () => {
             dispatch(PutUserPin({
                 current_pin : parseInt(pin.join('')),
                 new_pin : parseInt(newPin.join(''))
-            }, setErrorMessage))
+            }, setErrorMessage, setSuccessModal))
         }
     }
     const handleSubmit = () => {
@@ -71,6 +74,10 @@ const ChangePin = () => {
                 handleResetPin()
             }
         }
+    }
+
+    const handleSubmitSuccess = () => {
+        navigate('/main/profile')
     }
     return (
         <Fragment>
@@ -108,7 +115,7 @@ const ChangePin = () => {
                                         errorMessage ? <ErrorMessage content={errorMessage}></ErrorMessage> : null
                                     }
                                     <div className="d-flex w-50">
-                                        <Button className='auth-button-ready' value='Change Password' onClick={handleSubmitNew}></Button>
+                                        <Button className='auth-button-ready' value='Change PIN' onClick={handleSubmitNew}></Button>
                                     </div>
                                 </div>
                             </>
@@ -148,6 +155,16 @@ const ChangePin = () => {
                                     })
                                 }
                             </PinModal>
+                        ) : null
+                    }
+                    {
+                        successModal ? (
+                            <SuccessModal modalTitle={'Success!'} modalSubtitle='Your PIN is Changed.'
+                            handleSubmit={handleSubmitSuccess} >
+                                <div className="d-flex">
+                                    
+                                </div>
+                            </SuccessModal>
                         ) : null
                     }
                 </section>

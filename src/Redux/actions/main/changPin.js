@@ -21,7 +21,7 @@ export const PutUserPinFail = (error) => {
     }
 }
 
-export const PutUserPin = ({current_pin, new_pin}, setErrorMessage) => {
+export const PutUserPin = ({current_pin, new_pin}, setErrorMessage, setSuccessModal) => {
     return (dispatch) => {
         dispatch(PutUserPinRequest())
         return putRequest({
@@ -33,6 +33,7 @@ export const PutUserPin = ({current_pin, new_pin}, setErrorMessage) => {
             const data = res.data?.data
             dispatch(PutUserPinSuccess(data))
             dispatch(GetUserDetails())
+            setSuccessModal(true)
         })
         .catch((err) => {
             switch (err.response.data.code) {

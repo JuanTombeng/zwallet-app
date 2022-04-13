@@ -6,18 +6,20 @@ import ErrorMessage from '../../../Components/Module/ErrorMessage/ErrorMessage';
 import Input from '../../../Components/Base/Input/'
 import Button from '../../../Components/Base/Button'
 import PinModal from '../../../Components/Module/Modal/PinModal';
+import SuccessModal from '../../../Components/Module/Modal/SuccessModel';
 
 
 const TopUp = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     const {data} = useSelector((state) => state.UserDetails)
     const userProfile = data[0]
     const [errorMessage, setErrorMessage] = useState('')
     const [amount, setAmount] = useState('')
     const [pinModal, setPinModal] = useState(false)
     const [pin, setPin] = useState(new Array(6).fill(''))
+    const [successModal, setSuccessModal] = useState(false)
+    const [errorAmountMessage, setErrorAmountMessage] = useState(false)
 
     const handleModal = () => {
         setPinModal(!pinModal)
@@ -44,14 +46,27 @@ const TopUp = () => {
             dispatch(PostTopUp({
                 amount : parseInt(amount),
                 pin : parseInt(pin.join(''))
-            }, setErrorMessage))
+            }, setErrorMessage, setSuccessModal, setPinModal))
         } else {
             setErrorMessage('Your PIN is incorrect')
         }
     }
+    const handleSubmitSuccess = () => {
+        navigate('/main/home')
+    }
     return (
         <Fragment>
             <section className="dashboard d-flex flex-column h-100">
+                {
+                    errorAmountMessage ? (
+                        <div className="alert">
+                            <span className="closebtn" onClick={() => {
+                                setErrorAmountMessage(!errorAmountMessage)
+                            }}>&times;</span>  
+                            <strong>Warning!</strong> Please Input The Amount Top Up Correctly.
+                        </div>
+                    ) : null
+                }
                 <div className="wrapper-head d-flex flex-column pb-3">
                     <h4 className="summary-history-title">
                         Top Up Your Account
@@ -69,7 +84,7 @@ const TopUp = () => {
                         <button 
                         onClick={() => {
                             if (amount < 1000 || amount === '') {
-                                alert('Please input your top up amount')
+                                setErrorAmountMessage(true)
                             } else {
                                 handleModal()
                             }
@@ -100,9 +115,16 @@ const TopUp = () => {
                             </PinModal>
                         ) : null
                     }
-                    {/* <div className="modal-area-pin d-flex flex-column">
-                        
-                    </div> */}
+                    {
+                        successModal ? (
+                            <SuccessModal modalTitle={'Success!'} modalSubtitle='Top Up Proccess is Completed.'
+                            handleSubmit={handleSubmitSuccess} >
+                                <div className="d-flex">
+                                    <h2 className='success-add-receiver'>{`Top Up Rp ${amount} is added to your current balance.`}</h2>     
+                                </div>
+                            </SuccessModal>
+                        ) : null
+                    }
                 </div>
             </section>
         </Fragment>

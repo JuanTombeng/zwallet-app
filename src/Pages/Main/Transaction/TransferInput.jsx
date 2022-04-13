@@ -24,6 +24,8 @@ const TransferInput = () => {
         transaction_type : 'transfer',
         notes : ''
     })
+    const [errorAmountMessage, setErrorAmountMessage] = useState(false)
+
     const handleChangeFrom = (e) => {
         setTransferDetail({
             ...transferDetail,
@@ -31,9 +33,12 @@ const TransferInput = () => {
         })
     }
     const handleSubmit = () => {
-        console.log(transferDetail)
-        localStorage.setItem('transfer-details', JSON.stringify(transferDetail))
-        navigate(`/main/transfer-confirmation/${id}`)
+        if (transferDetail.amount !== '' && parseInt(transferDetail.amount) > 1000) {
+            localStorage.setItem('transfer-details', JSON.stringify(transferDetail))
+            navigate(`/main/transfer-confirmation/${id}`)
+        } else {
+            setErrorAmountMessage(true)
+        }
     }
     useEffect(() => {
         dispatch(GetUserDetails())
@@ -55,6 +60,16 @@ const TransferInput = () => {
     return (
         <Fragment>
             <section className="dashboard d-flex flex-column h-100">
+                {
+                    errorAmountMessage ? (
+                        <div className="alert">
+                            <span className="closebtn" onClick={() => {
+                                setErrorAmountMessage(!errorAmountMessage)
+                            }}>&times;</span>  
+                            <strong>Warning!</strong> The amount Transfer must not less than Rp 1000.
+                        </div>
+                    ) : null
+                }
                 <div className="wrapper-head d-flex flex-column">
                     <h4 className="summary-history-title">
                         Transfer Money

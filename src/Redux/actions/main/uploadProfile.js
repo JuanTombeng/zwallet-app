@@ -20,7 +20,7 @@ export const PostProfilePictureFail = (error) => {
     }
 }
 
-export const PostProfilePicture = (formData, setErrorMessage) => {
+export const PostProfilePicture = (formData, setErrorMessage, setSuccessModal) => {
     return (dispatch) => {
         dispatch(PostProfilePictureRequest())
         return postRequest(formData, '/v2/users/profile-picture')
@@ -28,7 +28,7 @@ export const PostProfilePicture = (formData, setErrorMessage) => {
             const data = res.data?.data
             dispatch(PostProfilePictureSuccess(data))
             dispatch(GetUserDetails())
-            alert('Your profile picture is updated')
+            setSuccessModal(true)
         })
         .catch((err) => {
             console.log(err.response.data.message)

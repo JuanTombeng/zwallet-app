@@ -20,13 +20,14 @@ export const PutPhoneNumberFail = (error) => {
     }
 }
 
-export const PutPhoneNumber = ({phone_number}, setErrorMessage) => {
+export const PutPhoneNumber = ({phone_number}, setErrorMessage, setSuccessModal) => {
     return (dispatch) => {
         dispatch(PutPhoneNumberRequest())
         return putRequest({new_phone_number : phone_number}, '/v2/users/new-phone')
         .then((res) => {
             const data = res.data?.data
             dispatch(PutPhoneNumberSuccess(data))
+            setSuccessModal(true)
         })
         .catch((err) => {
             const message = err.message

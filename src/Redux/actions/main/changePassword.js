@@ -20,7 +20,7 @@ export const PutUserPasswordFail = (error) => {
     }
 }
 
-export const PutUserPassword = ({current_password, new_password, confirm_password}, setErrorMessage) => {
+export const PutUserPassword = ({current_password, new_password, confirm_password}, setErrorMessage, setSuccessModal) => {
     return (dispatch) => {
         dispatch(PutUserPasswordRequest())
         return putRequest({
@@ -32,6 +32,7 @@ export const PutUserPassword = ({current_password, new_password, confirm_passwor
         .then((res) => {
             const data = res.data?.data
             dispatch(PutUserPasswordSuccess(data))
+            setSuccessModal(true)
         })
         .catch((err) => {
             switch (err.response.data.code) {

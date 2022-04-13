@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../Components/Base/Input/'
 import Button from '../../../Components/Base/Button'
 import ErrorMessage from '../../../Components/Module/ErrorMessage/ErrorMessage';
+import SuccessModal from '../../../Components/Module/Modal/SuccessModel';
 
 import {PutPhoneNumber} from '../../../Redux/actions/main/changePhoneNumber'
 
@@ -12,8 +13,10 @@ import './Profile.css'
 
 const NewPhone = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {data} = useSelector((state) => state.UserDetails)
     const userProfile = data[0]
+    const [successModal, setSuccessModal] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
 
@@ -34,8 +37,10 @@ const NewPhone = () => {
         } else if (phoneNumber.slice(0,2) == 62) {
             phone_number = '+' + phoneNumber
         }
-        console.log(phone_number)
-        dispatch(PutPhoneNumber({phone_number}, setErrorMessage))
+        dispatch(PutPhoneNumber({phone_number}, setErrorMessage, setSuccessModal))
+    }
+    const handleSubmitSuccess = () => {
+        navigate('/main/profile')
     }
     return (
         <Fragment>
@@ -62,6 +67,16 @@ const NewPhone = () => {
                             <Button className='auth-button-ready mt-3' value='Change Phone Number' onClick={handleSubmit}></Button>  
                         </div>
                     </div>
+                    {
+                        successModal ? (
+                            <SuccessModal modalTitle={'Success!'} modalSubtitle='Your Phone Number is Changed.'
+                            handleSubmit={handleSubmitSuccess} >
+                                <div className="d-flex">
+                                    
+                                </div>
+                            </SuccessModal>
+                        ) : null
+                    }
                 </section>
             }
         </Fragment>
